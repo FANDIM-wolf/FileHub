@@ -1,3 +1,6 @@
+/*
+function(s) to create uniqe , reliable token.
+*/
 #ifndef TOKEN_H
 #define TOKEN_H
 
