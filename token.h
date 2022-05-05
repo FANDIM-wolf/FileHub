@@ -18,7 +18,7 @@ QString get_random_symbol_of_number(){
 }
 
 int put_number_or_not(){
-    return qrand()%1;
+    return qrand()%2;
 }
 
 QString get_random_token(){

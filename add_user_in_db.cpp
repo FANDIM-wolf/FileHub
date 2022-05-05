@@ -68,10 +68,34 @@ void add_user_in_db::on_pushButton_clicked()
     qDebug()<<group;
     QString name = ui_add_user_in_db->lineEdit->text();
     QString type = ui_add_user_in_db->lineEdit_2->text();
-    QString random = get_random_token();
-    qDebug()<<name<<type<<random;
+    QString token = get_random_token();
+    qDebug()<<name<<type<<token;
     if(sizeof (name) >= 8 && (type == "студент" || type == "педагог")){
+        QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
+        db.setHostName("127.0.0.1");
+        db.setUserName("postgres");
+        db.setPassword("elkin");
+        db.setDatabaseName("postgres");
         QMessageBox::warning(this,"Login", "Данные  верны");
+        if(db.open())
+                  {
+                   qDebug("open");
+                   query = new QSqlQuery(db);
+                  //write down sql request
+                  query->prepare("INSERT INTO vistitors (name,group_user,type,token) VALUES (:name,:group,:type,:token)");
+                   //bind Values
+                   query->bindValue(":name",name);
+                   query->bindValue(":group",group);
+                   query->bindValue(":type",type);
+                   query->bindValue(":token",token);
+                   //exec sql request
+                   query->exec();
+                   //close data base
+              db.close();
+               }
+               else{
+                   qDebug("no open");
+               }
     }
     else{
         QMessageBox::warning(this,"Login", "Данные не верны");
