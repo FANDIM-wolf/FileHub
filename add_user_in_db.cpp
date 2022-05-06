@@ -70,7 +70,7 @@ void add_user_in_db::on_pushButton_clicked()
     QString type = ui_add_user_in_db->lineEdit_2->text();
     QString token = get_random_token();
     qDebug()<<name<<type<<token;
-    if(sizeof (name) >= 8 && (type == "студент" || type == "педагог")){
+    if(sizeof (name) >= 8 && (type == "студент" || type == "педагог")  ){
         QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
         db.setHostName("127.0.0.1");
         db.setUserName("postgres");

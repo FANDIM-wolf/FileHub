@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     add_user.cpp \
     add_user_in_db.cpp \
+    connect_to_db.cpp \
     docs.cpp \
     main.cpp \
     mainwindow.cpp
@@ -21,7 +22,8 @@ HEADERS += \
     add_user_in_db.h \
     docs.h \
     mainwindow.h \
-    token.h
+    token.h \
+    validation.h
 
 FORMS += \
     add_user_in_db.ui \
