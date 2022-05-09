@@ -3,6 +3,7 @@
 #include "frameshowmessage.h"
 #include "dialog_adding_user.h"
 #include "dialogdb.h"
+#include "Generate_code.h"
 // CONTINUE TO COPY YOUR CODE FROM FILE HUB REP.
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -11,8 +12,27 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     ui->setupUi(this);
-
-
+    QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
+    db.setHostName("127.0.0.1");
+    db.setUserName("postgres");
+    db.setPassword("elkin");
+    db.setDatabaseName("postgres");
+    if(db.open()){
+     QSqlQuery* query = new QSqlQuery(db);
+    //write down data about user who has signed in
+    QDateTime date = QDateTime::currentDateTime();
+    QString date_time = date.toString("yyyy.MM.dd");
+    int code = get_code_for_row();
+    query->prepare("INSERT INTO dates (id,date) VALUES (:id,:date)");
+    query->bindValue(":id",code);
+    query->bindValue(":date",date_time);
+    if(query->exec()){
+        qDebug()<<"Time is written";
+    }
+    else{
+        qDebug()<<date_time<<code;
+    }
+    }
 }
 
 MainWindow::~MainWindow()

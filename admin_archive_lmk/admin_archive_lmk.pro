@@ -17,6 +17,7 @@ SOURCES += \
 
 HEADERS += \
     DataList.h \
+    Generate_code.h \
     connect_to_data_base.h \
     dialog_adding_user.h \
     dialogdb.h \
