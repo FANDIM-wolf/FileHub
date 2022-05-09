@@ -4,6 +4,7 @@
 #include "dialog_adding_user.h"
 #include "dialogdb.h"
 #include "Generate_code.h"
+#include "dialog_update_data.h"
 // CONTINUE TO COPY YOUR CODE FROM FILE HUB REP.
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -61,5 +62,13 @@ void MainWindow::on_pushButton_2_clicked()
     DialogDB dialogdb;
     dialogdb.setModal(true);
     dialogdb.exec();
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    Dialog_update_data dialog_update_data;
+    dialog_update_data.setModal(true);
+    dialog_update_data.exec();
 }
 

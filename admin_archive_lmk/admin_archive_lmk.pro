@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     dialog_adding_user.cpp \
+    dialog_update_data.cpp \
     dialogdb.cpp \
     frameshowmessage.cpp \
     main.cpp \
@@ -20,6 +21,7 @@ HEADERS += \
     Generate_code.h \
     connect_to_data_base.h \
     dialog_adding_user.h \
+    dialog_update_data.h \
     dialogdb.h \
     frameshowmessage.h \
     mainwindow.h \
@@ -27,6 +29,7 @@ HEADERS += \
 
 FORMS += \
     dialog_adding_user.ui \
+    dialog_update_data.ui \
     dialogdb.ui \
     frameshowmessage.ui \
     mainwindow.ui
