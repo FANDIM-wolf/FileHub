@@ -1,7 +1,14 @@
 #ifndef GENERATE_CODE_H
 #define GENERATE_CODE_H
-#include "mainwindow.h"
-
+#include <QDebug>
+#include <QString>
+#include <QtSql>
+#include <QSqlDatabase>
+#include <QSqlDriver>
+#include <QMessageBox>
+#include <QString>
+#include <QTableView>
+#include <QSqlTableModel>
 bool is_in_data_base(int generated_code){
     QSqlQuery query;
      query.exec("SELECT * FROM dates");
