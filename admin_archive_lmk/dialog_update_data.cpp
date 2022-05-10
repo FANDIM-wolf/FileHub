@@ -17,6 +17,7 @@ Dialog_update_data::~Dialog_update_data()
 void Dialog_update_data::on_tableView_clicked(const QModelIndex &index)
 {
     int selected_code = index.row()+1;
+    row = selected_code;
     QSqlDatabase db = QSqlDatabase::database();
     db.setHostName("127.0.0.1");
     db.setUserName("postgres");
@@ -70,5 +71,37 @@ void Dialog_update_data::on_pushButton_3_clicked()
 
          }
     conn.close();
+}
+
+
+void Dialog_update_data::on_pushButton_clicked()
+{
+    QSqlDatabase db = QSqlDatabase::database();
+    db.setHostName("127.0.0.1");
+    db.setUserName("postgres");
+    db.setPassword("elkin");
+    db.setDatabaseName("postgres");
+    if(db.open()){
+        QString type = ui->lineEdit->text();
+        QString group_user = ui->lineEdit_2->text();
+        QString name = ui->lineEdit_3->text();
+        QString token = ui->lineEdit_4->text();
+        qDebug("open");
+                    query = new QSqlQuery(db);
+                  //write down sql request
+                  query->prepare("UPDATE vistitors  SET name=:0 , token=:1 , group_user=:2 , type=:3 WHERE id=:4 ");
+
+                  //bind Values
+                   query->bindValue(0,name);
+                   query->bindValue(1,token);
+                   query->bindValue(2,group_user);
+                   query->bindValue(3,type);
+                   query->bindValue(4,row);
+                   if(query->exec()){
+                                   QMessageBox::information(this,"Информация!","Информация о пользователе была успешно обновлена.");
+                               }
+                   //close data base
+                   db.close();
+    }
 }
 
