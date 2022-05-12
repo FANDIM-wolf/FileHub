@@ -1,6 +1,6 @@
 #include "dialog_update_data.h"
 #include "ui_dialog_update_data.h"
-
+#include "ENV.h"
 Dialog_update_data::Dialog_update_data(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog_update_data)
@@ -16,8 +16,9 @@ Dialog_update_data::~Dialog_update_data()
 
 void Dialog_update_data::on_tableView_clicked(const QModelIndex &index)
 {
-    int selected_code = index.row()+1;
+    int selected_code = index.row()+CORRECTING_ROW;
     row = selected_code;
+    qDebug()<<row;
     QSqlDatabase db = QSqlDatabase::database();
     db.setHostName("127.0.0.1");
     db.setUserName("postgres");

@@ -69,8 +69,15 @@
      <x>30</x>
      <y>280</y>
      <width>131</width>
-     <height>25</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:#004B90;
+color:white;
+width:150px;
+height:50px;
+border-color:25px;</string>
    </property>
    <property name="text">
     <string>Изменить </string>
@@ -82,8 +89,15 @@
      <x>240</x>
      <y>280</y>
      <width>131</width>
-     <height>25</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:#004B90;
+color:white;
+width:150px;
+height:50px;
+border-color:25px;</string>
    </property>
    <property name="text">
     <string>Удалить </string>
@@ -97,6 +111,13 @@
      <width>431</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:#004B90;
+color:white;
+width:150px;
+height:50px;
+border-color:25px;</string>
    </property>
    <property name="text">
     <string>Открыть данные</string>
