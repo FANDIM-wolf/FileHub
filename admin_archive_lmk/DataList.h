@@ -1,8 +1,5 @@
 #ifndef DATALIST_H
 #define DATALIST_H
-
-
-
 #include "dialog_adding_user.h"
 
 
@@ -125,5 +122,4 @@ QString findNode(Node** head_ref, QString data)
 
     }
 }
-
 #endif // DATALIST_H

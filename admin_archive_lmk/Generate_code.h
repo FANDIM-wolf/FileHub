@@ -9,6 +9,7 @@
 #include <QString>
 #include <QTableView>
 #include <QSqlTableModel>
+
 bool is_in_data_base(int generated_code){
     QSqlQuery query;
      query.exec("SELECT * FROM dates");
@@ -35,6 +36,5 @@ int get_code_for_row(){
 
 
 }
-
 
 #endif // GENERATE_CODE_H

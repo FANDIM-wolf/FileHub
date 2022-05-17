@@ -1,5 +1,6 @@
 #ifndef TOKEN_H
 #define TOKEN_H
+
 /*
 function(s) to create uniqe , reliable token.
 */
@@ -35,4 +36,5 @@ QString get_random_token(){
     }
     return token;
 }
+
 #endif // TOKEN_H

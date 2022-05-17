@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DialogDB</class>
- <widget class="QDialog" name="DialogDB">
+ <class>Dialogdb</class>
+ <widget class="QDialog" name="Dialogdb">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>772</width>
-    <height>422</height>
+    <width>1152</width>
+    <height>651</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>ЛМК АРХИВ АДМИНИСТРАТОР</string>
   </property>
   <widget class="QTableView" name="tableView">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>60</y>
-     <width>731</width>
-     <height>281</height>
+     <x>60</x>
+     <y>90</y>
+     <width>1011</width>
+     <height>491</height>
     </rect>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>361</width>
+     <x>60</x>
+     <y>30</y>
+     <width>591</width>
      <height>24</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
   </widget>
  </widget>

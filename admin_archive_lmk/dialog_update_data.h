@@ -2,7 +2,6 @@
 #define DIALOG_UPDATE_DATA_H
 
 #include <QDialog>
-
 #include <QDebug>
 #include <QString>
 #include <QtSql>
@@ -25,11 +24,11 @@ public:
     ~Dialog_update_data();
 
 private slots:
+    void on_pushButton_clicked();
+
     void on_tableView_clicked(const QModelIndex &index);
 
-    void on_pushButton_3_clicked();
-
-    void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
 
 private:
     Ui::Dialog_update_data *ui;

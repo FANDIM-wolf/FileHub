@@ -3,7 +3,10 @@
 #include <QDialog>
 
 #include <QDebug>
-#include <QString>
+#include <QFileDialog>
+#include <QFile>
+#include <QDir>
+
 
 const int CORRECTING_ROW = 18;
 #endif // ENV_H

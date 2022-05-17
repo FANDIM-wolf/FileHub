@@ -2,6 +2,7 @@
 #define DIALOGDB_H
 
 #include <QDialog>
+#include <QDialog>
 #include <QDebug>
 #include <QString>
 #include <QtSql>
@@ -12,22 +13,22 @@
 #include <QTableView>
 #include <QSqlTableModel>
 namespace Ui {
-class DialogDB;
+class Dialogdb;
 }
 
-class DialogDB : public QDialog
+class Dialogdb : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit DialogDB(QWidget *parent = nullptr);
-    ~DialogDB();
+    explicit Dialogdb(QWidget *parent = nullptr);
+    ~Dialogdb();
 
 private slots:
     void on_comboBox_currentIndexChanged(const QString &arg1);
 
 private:
-    Ui::DialogDB *ui;
+    Ui::Dialogdb *ui;
     QSqlDatabase db;
     QSqlQuery *query ;
     QSqlTableModel *modal;

@@ -2,7 +2,6 @@
 #define DIALOG_ADDING_USER_H
 
 #include <QDialog>
-
 #include <QDebug>
 #include <QString>
 #include <QtSql>
@@ -25,9 +24,9 @@ public:
     ~Dialog_adding_user();
 
 private slots:
-    void on_pushButton_clicked();
-
     void on_radioButton_toggled(bool checked);
+
+    void on_pushButton_clicked();
 
 private:
     Ui::Dialog_adding_user *ui;
