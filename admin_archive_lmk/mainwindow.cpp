@@ -4,11 +4,14 @@
 #include "dialogdb.h"
 #include "Generate_code.h"
 #include "dialog_update_data.h"
+#include "dialog_login.h"
+#include "ENV.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    MainWindow::status = false; // as we did not sign in system
     QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
         db.setHostName("127.0.0.1");
         db.setUserName("postgres");
@@ -31,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
         }
         }
 
+        ui->label_2->hide();
 }
 
 MainWindow::~MainWindow()
@@ -41,24 +45,65 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
+
     Dialog_adding_user add_user_in_db_window;
     add_user_in_db_window.setModal(true);
+    if(status == true){
     add_user_in_db_window.exec();
+    }
+    else{
+        QMessageBox::information(this,"Информация!","Вы не вошли в систему.");
+    }
 }
 
 
 void MainWindow::on_pushButton_2_clicked()
 {
+
     Dialogdb dialogdb;
     dialogdb.setModal(true);
+    if( status == true){
     dialogdb.exec();
+    }
+    else{
+        QMessageBox::information(this,"Информация!","Вы не вошли в систему.");
+    }
 }
 
 
 void MainWindow::on_pushButton_3_clicked()
 {
+
     Dialog_update_data dialog_update_data;
       dialog_update_data.setModal(true);
+      if(status == true){
       dialog_update_data.exec();
+      }
+      else{
+          QMessageBox::information(this,"Информация!","Вы не вошли в систему.");
+      }
 }
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    Dialog_login dialog_login;
+    dialog_login.setModal(true);
+
+    dialog_login.exec();
+
+
+
+
+}
+
+void MainWindow::slot_for_status(QString string_name)
+{    qDebug()<<string_name<<"name";
+     ui->label_2->setText(string_name);
+     ui->pushButton_4->hide();
+     ui->label_2->show();
+     MainWindow::status =true;
+}
+
+
 

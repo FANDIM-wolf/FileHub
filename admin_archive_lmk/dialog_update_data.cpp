@@ -48,6 +48,7 @@ void Dialog_update_data::on_pushButton_clicked()
 
 void Dialog_update_data::on_tableView_clicked(const QModelIndex &index)
 {
+
     int selected_code = index.row()+CORRECTING_ROW;
        row = selected_code;
        qDebug()<<row;

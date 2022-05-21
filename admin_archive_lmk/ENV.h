@@ -9,4 +9,5 @@
 
 
 const int CORRECTING_ROW = 18;
+
 #endif // ENV_H

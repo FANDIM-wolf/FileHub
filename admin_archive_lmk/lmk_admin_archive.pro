@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     dialog_adding_user.cpp \
+    dialog_login.cpp \
     dialog_update_data.cpp \
     dialogdb.cpp \
     main.cpp \
@@ -20,6 +21,7 @@ HEADERS += \
     ENV.h \
     Generate_code.h \
     dialog_adding_user.h \
+    dialog_login.h \
     dialog_update_data.h \
     dialogdb.h \
     mainwindow.h \
@@ -27,6 +29,7 @@ HEADERS += \
 
 FORMS += \
     dialog_adding_user.ui \
+    dialog_login.ui \
     dialog_update_data.ui \
     dialogdb.ui \
     mainwindow.ui
