@@ -258,6 +258,8 @@ void Dialog_update_data::on_pushButton_2_clicked()
 void Dialog_update_data::on_pushButton_3_clicked()
 {
     type_of_data ="documents";
+    ui->lineEdit_3->setText("");
+    ui->lineEdit_4->setText("");
     QSqlDatabase conn = QSqlDatabase::database();
         conn.setHostName("127.0.0.1");
         conn.setUserName("postgres");
@@ -288,6 +290,7 @@ void Dialog_update_data::on_pushButton_3_clicked()
 void Dialog_update_data::on_pushButton_4_clicked()
 {
     type_of_data = "books";
+    ui->lineEdit_4->setText("");
     QSqlDatabase conn = QSqlDatabase::database();
         conn.setHostName("127.0.0.1");
         conn.setUserName("postgres");
