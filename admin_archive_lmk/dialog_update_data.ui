@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1107</width>
-    <height>665</height>
+    <height>758</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,7 +45,7 @@ color:white;
 background-color:blue;</string>
    </property>
    <property name="text">
-    <string>Открыть базу данных</string>
+    <string>Пользователи</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
@@ -111,6 +111,42 @@ background-color:blue;</string>
      <width>461</width>
      <height>24</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>650</y>
+     <width>521</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: 'Roboto';
+color:white;
+background-color:blue;</string>
+   </property>
+   <property name="text">
+    <string>Документы</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>690</y>
+     <width>521</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: 'Roboto';
+color:white;
+background-color:blue;</string>
+   </property>
+   <property name="text">
+    <string>Книги</string>
    </property>
   </widget>
  </widget>
