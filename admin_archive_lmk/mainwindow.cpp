@@ -20,21 +20,22 @@ MainWindow::MainWindow(QWidget *parent)
         if(db.open()){
          QSqlQuery* query = new QSqlQuery(db);
         //write down data about user who has signed in
-        QDateTime date = QDateTime::currentDateTime();
-        QString date_time = date.toString("yyyy.MM.dd");
+         QDateTime dateTime = dateTime.currentDateTime();
+        QString dateTimeString = dateTime.toString("yyyy-MM-dd hh:mm:ss");
         int code = get_code_for_row();
         query->prepare("INSERT INTO dates (id,date) VALUES (:id,:date)");
         query->bindValue(":id",code);
-        query->bindValue(":date",date_time);
+        query->bindValue(":date",dateTimeString);
         if(query->exec()){
-            qDebug()<<"Time is written";
+            qDebug()<<"Time is written"<<dateTimeString;
         }
         else{
-            qDebug()<<date_time<<code;
+            qDebug()<<dateTimeString<<code;
         }
         }
 
         ui->label_2->hide();
+        ui->pushButton_3->hide();
 }
 
 MainWindow::~MainWindow()
@@ -97,11 +98,15 @@ void MainWindow::on_pushButton_4_clicked()
 
 }
 
-void MainWindow::slot_for_status(QString string_name)
+void MainWindow::slot_for_status(QString string_name ,QString type)
 {    qDebug()<<string_name<<"name";
+     qDebug()<<type<<"type";
      ui->label_2->setText(string_name);
      ui->pushButton_4->hide();
      ui->label_2->show();
+     if(string_name=="admin" ||(type=="admin" || type == "педагог")){
+          ui->pushButton_3->show();
+      }
      MainWindow::status =true;
 }
 

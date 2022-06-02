@@ -25,6 +25,8 @@ Dialog_login::Dialog_login(QWidget *parent) :
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
     connect(this,&Dialog_login::signal_for_status ,mainwindow ,&MainWindow::slot_for_status);
+
+
 }
 
 Dialog_login::~Dialog_login()
@@ -34,7 +36,23 @@ Dialog_login::~Dialog_login()
 
 void Dialog_login::on_pushButton_clicked()
 {
+    QString first_line_of_file;
     QString token = ui->lineEdit->text();
+    // in case admin enters
+    QFile inputFile("C:/LMK_ARCHIVE/admin.txt");
+    if (inputFile.open(QIODevice::ReadOnly))
+    {
+       QTextStream in(&inputFile);
+
+
+          first_line_of_file = in.readLine();
+
+
+       inputFile.close();
+    }
+    if( token == first_line_of_file ){
+         emit signal_for_status("admin","admin");
+    }else {
 
     qDebug()<<"button"<<token;
 
@@ -59,8 +77,9 @@ void Dialog_login::on_pushButton_clicked()
             if(token == gotten_password_from_data_base){
                  // yes it already has code in data base
                 QString name = query.value(3).toString();
+                QString type = query.value(1).toString();
                 qDebug()<<"Name:"<<name;
-                emit signal_for_status(name);
+                emit signal_for_status(name , type);
 
             }
 
@@ -68,6 +87,7 @@ void Dialog_login::on_pushButton_clicked()
     }
     else{
         qDebug()<<"NO connection";
+    }
     }
 }
 

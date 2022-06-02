@@ -70,7 +70,7 @@ color:white;
 background-color:blue;</string>
    </property>
    <property name="text">
-    <string>Потвердить </string>
+    <string>Обновить</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
@@ -147,6 +147,31 @@ background-color:blue;</string>
    </property>
    <property name="text">
     <string>Книги</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>460</y>
+     <width>451</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: 'Roboto';
+color:white;
+background-color:blue;</string>
+   </property>
+   <property name="text">
+    <string>Удалить</string>
    </property>
   </widget>
  </widget>

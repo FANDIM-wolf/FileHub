@@ -33,7 +33,7 @@ public slots:
 
     void on_pushButton_4_clicked();
 
-    void slot_for_status(QString string_name);
+    void slot_for_status(QString string_name , QString type);
 
 private:
     Ui::MainWindow *ui;

@@ -24,7 +24,7 @@ private:
     MainWindow *mainwindow;
         QSqlQuery *query ;
 signals:
-    void signal_for_status(QString string_name);
+    void signal_for_status(QString string_name , QString type);
 };
 
 #endif // DIALOG_LOGIN_H

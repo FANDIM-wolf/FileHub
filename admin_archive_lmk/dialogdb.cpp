@@ -9,9 +9,11 @@ Dialogdb::Dialogdb(QWidget *parent) :
     //init all elements of menu
                QString val_option_1 ="users";
                QString val_option_2 ="documents";
+               QString val_option_3 ="books";
                // add all of them in comboBox
                ui->comboBox->addItem(tr("Показать пользователей") , QVariant::fromValue(val_option_1));
                ui->comboBox->addItem(tr("Показать документы") , QVariant::fromValue(val_option_2));
+               ui->comboBox->addItem(tr("Показать книги") , QVariant::fromValue(val_option_3));
                // hide  question  button
                setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
                // end of hiding
@@ -41,6 +43,9 @@ void Dialogdb::on_comboBox_currentIndexChanged(const QString &arg1)
                 }
                 if(current_selected_option == "documents"){
                 query->prepare("select * from documents ");
+                }
+                if(current_selected_option == "books"){
+                query->prepare("select * from books");
                 }
                 query->exec();
                 modal->setQuery(*query);

@@ -41,7 +41,7 @@ background-color:blue;</string>
   <widget class="QRadioButton" name="radioButton">
    <property name="geometry">
     <rect>
-     <x>360</x>
+     <x>350</x>
      <y>270</y>
      <width>97</width>
      <height>22</height>
@@ -62,7 +62,7 @@ background-color:blue;</string>
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>270</y>
+     <y>260</y>
      <width>271</width>
      <height>41</height>
     </rect>
