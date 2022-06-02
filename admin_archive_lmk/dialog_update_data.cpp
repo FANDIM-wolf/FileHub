@@ -1,7 +1,8 @@
 #include "dialog_update_data.h"
 #include "ui_dialog_update_data.h"
 #include "ENV.h"
-
+#include "dialog_delete.h"
+#include "ui_dialog_delete.h"
 QString type_of_data =" ";
 
 Dialog_update_data::Dialog_update_data(QWidget *parent) :
@@ -56,7 +57,7 @@ void Dialog_update_data::on_tableView_clicked(const QModelIndex &index)
 
    if (type_of_data == "vistitors"){
 
-    int selected_code = index.row()+CORRECTING_ROW;
+    int selected_code = ui->tableView->model()->data(ui->tableView->model()->index(index.row(),0)).toInt(); //click at any cell of table ,but get data of first cell.
        row = selected_code;
        qDebug()<<row;
        QSqlDatabase db = QSqlDatabase::database();
@@ -189,7 +190,7 @@ void Dialog_update_data::on_pushButton_2_clicked()
                      query->bindValue(3,type);
                      query->bindValue(4,row);
                      if(query->exec()){
-                                     QMessageBox::information(this,"Информация!","Информация о пользователе была успешно обновлена.");
+                                     QMessageBox::information(this,"Внимание!","Информация о пользователе была успешно обновлена.");
                                  }
                      //close data base
                      db.close();
@@ -217,7 +218,7 @@ void Dialog_update_data::on_pushButton_2_clicked()
                          query->bindValue(2,row);
 
                          if(query->exec()){
-                                         QMessageBox::information(this,"Информация!","Информация была успешно обновлена.");
+                                         QMessageBox::information(this,"Внимание!","Информация была успешно обновлена.");
                                      }
                          //close data base
                          db.close();
@@ -246,7 +247,7 @@ void Dialog_update_data::on_pushButton_2_clicked()
                          query->bindValue(3,row);
 
                          if(query->exec()){
-                                         QMessageBox::information(this,"Информация!","Информация была успешно обновлена.");
+                                         QMessageBox::information(this,"Внимание!","Информация была успешно обновлена.");
                                      }
                          //close data base
                          db.close();
@@ -315,5 +316,14 @@ void Dialog_update_data::on_pushButton_4_clicked()
             qDebug()<<"unconnected";
         }
         conn.close();
+}
+
+
+void Dialog_update_data::on_pushButton_5_clicked()
+{
+    dialog_delete dialog_delete;
+    dialog_delete.setModal(true);
+
+    dialog_delete.exec();
 }
 
