@@ -91,7 +91,7 @@ void Dialog_update_data::on_tableView_clicked(const QModelIndex &index)
     }
     if(type_of_data =="documents"){
 
-        int selected_code = index.row()+1;
+        int selected_code = ui->tableView->model()->data(ui->tableView->model()->index(index.row(),0)).toInt(); //click at any cell of table ,but get data of first cell.
            row = selected_code;
            qDebug()<<row;
            QSqlDatabase db = QSqlDatabase::database();
@@ -115,7 +115,19 @@ void Dialog_update_data::on_tableView_clicked(const QModelIndex &index)
                                   ui->lineEdit->setText(name_of_document);
                                   ui->lineEdit_2->setText(group_of_user);
 
+                                  // open file
 
+                                  QFile inputFile("C:/LMK_ARCHIVE/file_directory.txt");
+                                  if (inputFile.open(QIODevice::ReadOnly))
+                                  {
+                                     QTextStream in(&inputFile);
+
+                                        //get folder where all files are holded and get name of file;
+                                        file_directory = in.readLine();
+                                        name_of_document_in_pc = name_of_document;
+
+                                     inputFile.close();
+                                  }
 
                                }
 
@@ -125,7 +137,8 @@ void Dialog_update_data::on_tableView_clicked(const QModelIndex &index)
     }
 
     if(type_of_data == "books"){
-        int selected_code = index.row()+1;
+        int selected_code = ui->tableView->model()->data(ui->tableView->model()->index(index.row(),0)).toInt();
+        //click at any cell of table ,but get data of first cell.
            row = selected_code;
            qDebug()<<row;
            QSqlDatabase db = QSqlDatabase::database();
@@ -150,7 +163,19 @@ void Dialog_update_data::on_tableView_clicked(const QModelIndex &index)
                                   ui->lineEdit_2->setText(image);
                                   ui->lineEdit_3->setText(description);
 
+                                  // open file
 
+                                  QFile inputFile("C:/LMK_ARCHIVE/file_directory.txt");
+                                  if (inputFile.open(QIODevice::ReadOnly))
+                                  {
+                                     QTextStream in(&inputFile);
+
+                                        //get folder where all files are holded and get name of file;
+                                        file_directory = in.readLine();
+                                        name_of_document_in_pc = name_of_document;
+
+                                     inputFile.close();
+                                  }
 
                                }
 
@@ -216,13 +241,28 @@ void Dialog_update_data::on_pushButton_2_clicked()
                          query->bindValue(0,name);
                          query->bindValue(1,group_user);
                          query->bindValue(2,row);
+                         // change name of document
+                         QString full_url = file_directory+name_of_document_in_pc;
+
+
 
                          if(query->exec()){
+
+
+                            QFile::rename(full_url, file_directory+name);
+
+
                                          QMessageBox::information(this,"Внимание!","Информация была успешно обновлена.");
+                                         qDebug()<<full_url;
                                      }
+                         }
+                         else{
+                             qDebug()<<file_directory<<name_of_document_in_pc;
+                             QMessageBox::information(this,"Внимание!","Ошибка при изменение данных  файла .");
+                         }
                          //close data base
                          db.close();
-          }
+
     }
     if(type_of_data == "books"){
         QSqlDatabase db = QSqlDatabase::database();
@@ -245,10 +285,16 @@ void Dialog_update_data::on_pushButton_2_clicked()
                          query->bindValue(1,image);
                          query->bindValue(2,description);
                          query->bindValue(3,row);
-
+                         // change name of document
+                         QString full_url = file_directory+name_of_document_in_pc;
                          if(query->exec()){
+                                         QFile::rename(full_url, file_directory+name);
                                          QMessageBox::information(this,"Внимание!","Информация была успешно обновлена.");
                                      }
+                         else{
+                             qDebug()<<file_directory<<name_of_document_in_pc;
+                             QMessageBox::information(this,"Внимание!","Ошибка при изменение данных  файла .");
+                         }
                          //close data base
                          db.close();
           }
@@ -321,9 +367,78 @@ void Dialog_update_data::on_pushButton_4_clicked()
 
 void Dialog_update_data::on_pushButton_5_clicked()
 {
-    dialog_delete dialog_delete;
-    dialog_delete.setModal(true);
+    if(type_of_data == "vistitors"){
+    QSqlDatabase db = QSqlDatabase::database();
+      db.setHostName("127.0.0.1");
+      db.setUserName("postgres");
+      db.setPassword("elkin");
+      db.setDatabaseName("postgres");
+      if(db.open()){
 
-    dialog_delete.exec();
+          qDebug("open");
+                      query = new QSqlQuery(db);
+                    //write down sql request
+                    query->prepare("DELETE FROM vistitors   WHERE id=:0 ");
+
+                    //bind Values
+
+                     query->bindValue(0,row);
+                     if(query->exec()){
+                                     QMessageBox::information(this,"Внимание!","Информация о пользователе была успешно обновлена.");
+                                 }
+                     //close data base
+                     db.close();
+      }
+    }
+    if(type_of_data == "documents"){
+        QSqlDatabase db = QSqlDatabase::database();
+          db.setHostName("127.0.0.1");
+          db.setUserName("postgres");
+          db.setPassword("elkin");
+          db.setDatabaseName("postgres");
+          if(db.open()){
+
+
+              qDebug("open");
+                          query = new QSqlQuery(db);
+                        //write down sql request
+                        query->prepare("DELETE FROM documents WHERE id=:0 ");
+
+                        //bind Values
+
+                         query->bindValue(0,row);
+
+                         if(query->exec()){
+                                         QMessageBox::information(this,"Внимание!","Информация была успешно обновлена.");
+                                     }
+                         //close data base
+                         db.close();
+          }
+    }
+    if(type_of_data == "books"){
+        QSqlDatabase db = QSqlDatabase::database();
+          db.setHostName("127.0.0.1");
+          db.setUserName("postgres");
+          db.setPassword("elkin");
+          db.setDatabaseName("postgres");
+          if(db.open()){
+
+
+              qDebug("open");
+                          query = new QSqlQuery(db);
+                        //write down sql request
+                        query->prepare("DELETE FROM books   WHERE id=:0 ");
+
+                        //bind Values
+
+                         query->bindValue(0,row);
+
+                         if(query->exec()){
+                                         QMessageBox::information(this,"Внимание!","Информация была успешно обновлена.");
+                                     }
+                         //close data base
+                         db.close();
+          }
+    }
 }
 

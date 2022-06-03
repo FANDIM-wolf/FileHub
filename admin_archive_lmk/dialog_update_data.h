@@ -42,6 +42,9 @@ private:
     QSqlTableModel *modal;
     QSqlDatabase conn;
     int row;
+    QString name_of_document_in_pc;
+    QString name_of_book_in_pc;
+    QString file_directory;
 };
 
 #endif // DIALOG_UPDATE_DATA_H
