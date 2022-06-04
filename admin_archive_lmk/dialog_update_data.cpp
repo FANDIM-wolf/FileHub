@@ -156,7 +156,7 @@ void Dialog_update_data::on_tableView_clicked(const QModelIndex &index)
                    if(query->exec()){
                                if(query->first()){
 
-                                  QString name_of_document =query->value(1).toString();
+                                  QString name_of_document =query->value(3).toString();
                                   QString image = query->value(2).toString();
                                   QString description = query->value(3).toString();
                                   ui->lineEdit->setText(name_of_document);
