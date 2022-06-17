@@ -6,6 +6,7 @@
 #include "dialog_update_data.h"
 #include "dialog_login.h"
 #include "ENV.h"
+#include <QFile>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -36,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         ui->label_2->hide();
         ui->pushButton_3->hide();
+        ui->pushButton_5->hide();
 }
 
 MainWindow::~MainWindow()
@@ -106,9 +108,60 @@ void MainWindow::slot_for_status(QString string_name ,QString type)
      ui->label_2->show();
      if(string_name=="admin" ||(type=="admin" || type == "педагог")){
           ui->pushButton_3->show();
+          if(string_name == "admin"){
+              //ui->pushButton_5->show();
+              qDebug()<<"ADMIN";
+    }
+
       }
      MainWindow::status =true;
 }
 
 
+
+//load groups in DataBase
+void MainWindow::on_pushButton_5_clicked()
+{
+    QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
+        db.setHostName("127.0.0.1");
+        db.setUserName("postgres");
+        db.setPassword("elkin");
+        db.setDatabaseName("postgres");
+
+
+        //get all groups from the file groups.txt
+    QFile file("C:/LMK_ARCHIVE/groups.txt");
+
+
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    while(!file.atEnd()){
+    QString str = file.readLine();
+
+    qDebug()<< str;
+     //append(&head ,  "КСК 18-2",2);
+    //append(&head ,  "КСК 18-3",3);
+    // add all of them in comboBox
+    if(db.open()){
+     QSqlQuery* query = new QSqlQuery(db);
+    //write down data about user who has signed in
+
+    int code = get_code_for_row();
+    query->prepare("INSERT INTO groups_users (id,name) VALUES (:id,:name)");
+    query->bindValue(":id",code);
+    query->bindValue(":date",str);
+    if(query->exec()){
+        qDebug()<<"Time is written"<<str;
+    }
+    else{
+        qDebug()<<str<<"No"<<code;
+    }
+    }
+
+    //ui->comboBox->addItem(tr("КСК 18-3") , QVariant::fromValue(findNode( &head ,"КСК 18-3")));
+    }
+    }
+    else{
+    qDebug()<< "don't open file";
+    }
+}
 

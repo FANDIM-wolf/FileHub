@@ -22,6 +22,13 @@
      <height>16</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
     <string>Введите ваш токен</string>
    </property>
@@ -44,6 +51,11 @@
      <width>291</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: 'Roboto';
+color:white;
+background-color:blue;</string>
    </property>
    <property name="text">
     <string>Войти</string>

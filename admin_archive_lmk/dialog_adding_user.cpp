@@ -10,6 +10,10 @@ Dialog_adding_user::Dialog_adding_user(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->comboBox->hide();
+     ui->comboBox_2->addItem("Педагог","педагог");
+     ui->comboBox_2->addItem("Студент","студент");
+     ui->lineEdit_2->hide();
+
     // hide  question  button
    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     // end of hiding
@@ -61,18 +65,24 @@ void Dialog_adding_user::on_pushButton_clicked()
             QString group = ui->comboBox->currentData().toString();
             qDebug()<<group;
             QString name = ui->lineEdit->text();
-            QString type = ui->lineEdit_2->text();
+            QString type = ui->comboBox_2->currentData().toString();
             QString token = get_random_token();
             qDebug()<<name<<type<<token;
             if(sizeof (name) >= 8 && (type == "студент" || type == "педагог")  ){
+
                 QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
                 db.setHostName("127.0.0.1");
                 db.setUserName("postgres");
                 db.setPassword("elkin");
                 db.setDatabaseName("postgres");
+                if(sizeof(group) < 0){
+                    //in case we did not select a group
+                    group = "null";
+                }
                 QMessageBox::warning(this,"Login", "Данные  верны");
                 if(db.open())
                           {
+
                            qDebug("open");
                            query = new QSqlQuery(db);
                           //write down sql request
