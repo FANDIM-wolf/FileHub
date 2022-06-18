@@ -383,9 +383,7 @@ void Dialog_update_data::on_pushButton_5_clicked()
                     //bind Values
 
                      query->bindValue(0,row);
-                     if(query->exec()){
-                                     QMessageBox::information(this,"Внимание!","Информация о пользователе была успешно обновлена.");
-                                 }
+
                      //close data base
                      db.close();
       }
@@ -397,7 +395,7 @@ void Dialog_update_data::on_pushButton_5_clicked()
           db.setPassword("elkin");
           db.setDatabaseName("postgres");
           if(db.open()){
-
+            QString name = ui->lineEdit->text();
 
               qDebug("open");
                           query = new QSqlQuery(db);
@@ -409,6 +407,8 @@ void Dialog_update_data::on_pushButton_5_clicked()
                          query->bindValue(0,row);
 
                          if(query->exec()){
+                             QFile::remove(file_directory+name); // delete file
+                             QMessageBox::information(this,"Внимание!","Информация была успешно обновлена.");
                                          QMessageBox::information(this,"Внимание!","Информация была успешно обновлена.");
                                      }
                          //close data base
@@ -422,7 +422,7 @@ void Dialog_update_data::on_pushButton_5_clicked()
           db.setPassword("elkin");
           db.setDatabaseName("postgres");
           if(db.open()){
-
+                QString name = ui->lineEdit->text();
 
               qDebug("open");
                           query = new QSqlQuery(db);
@@ -434,6 +434,7 @@ void Dialog_update_data::on_pushButton_5_clicked()
                          query->bindValue(0,row);
 
                          if(query->exec()){
+                             QFile::remove(file_directory+name);
                                          QMessageBox::information(this,"Внимание!","Информация была успешно обновлена.");
                                      }
                          //close data base
